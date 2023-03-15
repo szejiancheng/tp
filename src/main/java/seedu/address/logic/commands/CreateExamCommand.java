@@ -25,14 +25,14 @@ public class CreateExamCommand extends Command {
             + "Parameters: "
             + "n/STUDENT_NAME "
             + "e/EXAM_DESCRIPTION "
-            + "start/START_TIME"
+            + "start/START_TIME "
             + "end/END_TIME\n"
             + "Example: " + COMMAND_WORD + " "
             + "n/John Doe "
             + "e/Math MYE Paper 1 "
             + "start/2023-04-01T12:00 "
             + "end/2023-04-01T13:00";
-
+    
     private final String examDescription;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
@@ -70,6 +70,7 @@ public class CreateExamCommand extends Command {
         Exam exam = new Exam(examDescription, startTime, endTime, 0d, Exam.ExamStatus.Upcoming, null);
 
         //Todo: currently weightage is 0 for convenience, implement this where possible
+
         try {
             for (Student student : studentList) {
                 student.addExam(exam);
