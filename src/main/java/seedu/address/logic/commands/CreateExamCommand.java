@@ -11,7 +11,6 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Exam;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.ConflictingLessonsException;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 
 /**
@@ -32,7 +31,7 @@ public class CreateExamCommand extends Command {
             + "e/Math MYE Paper 1 "
             + "start/2023-04-01T12:00 "
             + "end/2023-04-01T13:00";
-    
+
     private final String examDescription;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
