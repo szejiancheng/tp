@@ -68,7 +68,7 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
             String done = argMultimap.getValue(PREFIX_DONE).get();
-            subjectPredicate = new LessonDonePredicate(done);
+            donePredicate = new LessonDonePredicate(done);
         }
 
         // If date is present, create a predicate to filter by status
@@ -83,4 +83,10 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof ViewLessonCommandParser // instanceof handles nulls
+            && this.equals((ViewLessonCommandParser) other)); // state check
+    }
 }
