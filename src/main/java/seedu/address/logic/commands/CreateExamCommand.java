@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Exam;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.ConflictingLessonsException;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 
 /**
@@ -62,8 +63,13 @@ public class CreateExamCommand extends Command {
         if (startTime.isBefore(LocalDateTime.now())) {
             throw new CommandException("start time must be in the future.");
         }
-        //Todo: currently weightage is 0 for convenience, implement this where possible
+        if (startTime.isAfter(endTime)) {
+            throw new CommandException("start time cannot be after end time.");
+        }
+
         Exam exam = new Exam(examDescription, startTime, endTime, 0d, Exam.ExamStatus.Upcoming, null);
+
+        //Todo: currently weightage is 0 for convenience, implement this where possible
         try {
             for (Student student : studentList) {
                 student.addExam(exam);
